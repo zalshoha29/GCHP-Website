@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — The Global Child Health Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png?v=5" alt="The Global Child Health Project" class="nav-logo-img" style="height:64px;width:auto;display:block;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="get-involved.html">Get Involved</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-nav-login" id="netlifyLoginBtn">Member Login</button>
+        <a href="get-involved.html" class="btn-nav-donate">Donate</a>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="about.html">About Us</a>
+      <a href="our-work.html">Our Work</a>
+      <a href="impact.html">Impact</a>
+      <a href="our-team.html">Our Team</a>
+      <a href="partners.html">Partners</a>
+      <a href="get-involved.html">Get Involved</a>
+      <button class="mobile-login" id="mobileLoginBtn">Member Login</button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO BANNER -->
+  <section style="background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #0e3d6e 100%); padding: 140px 0 80px; position: relative; overflow: hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%, rgba(88,149,147,0.15) 0%, transparent 70%);"></div>
+    <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;border:1px solid rgba(88,149,147,0.12);box-shadow:0 0 0 60px rgba(88,149,147,0.05),0 0 0 120px rgba(88,149,147,0.03);"></div>
+    <div class="container" style="position:relative;z-index:2;">
+      <div class="section-eyebrow light" style="margin-bottom:16px;">Who We Are</div>
+      <h1 style="font-family:var(--font-head);font-weight:700;font-size:clamp(2.4rem,5vw,3.6rem);color:white;line-height:1.1;margin-bottom:20px;">About Us</h1>
+      <p style="font-size:1.15rem;color:rgba(255,255,255,0.75);max-width:580px;line-height:1.7;">A student-led initiative built on coordination, accountability, and measurable impact.</p>
+    </div>
+  </section>
+
+  <!-- WHO WE ARE -->
+  <section class="section" style="background:white;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;">
+        <div>
+          <div class="section-eyebrow">Our Foundation</div>
+          <h2 class="section-title">Who We Are</h2>
+          <p class="about-text">The Global Child Health Project is a student-led, international humanitarian initiative grounded in three core pillars: <strong style="color:var(--navy);">Unification</strong>, <strong style="color:var(--navy);">Mobilization</strong>, and <strong style="color:var(--navy);">Impact</strong>.</p>
+          <p class="about-text">We unify fragmented undergraduate passion into a coordinated movement, mobilize students across borders in partnership with trusted humanitarian organizations, and ensure measurable, ethical impact for war-affected children in the Middle East.</p>
+          <p class="about-text">By focusing on education, storytelling, and partnership — not direct implementation — we convert solidarity into action while remaining apolitical, accountable, and sustainable.</p>
+          <div style="margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;">
+            <a href="our-work.html" class="btn-primary">See Our Work</a>
+            <a href="get-involved.html" class="btn-outline">Get Involved</a>
+          </div>
+        </div>
+        <div>
+          <div class="about-card-stack">
+            <div class="about-card about-card-1">
+              <div class="about-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="12" r="4" stroke="#589593" stroke-width="1.8"/><path d="M3 12 Q7.5 7 12 9.5 Q16.5 12 21 7" stroke="#589593" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+              </div>
+              <div>
+                <div class="about-card-label">Unification</div>
+                <div class="about-card-desc">Bringing student organizations across campuses and cultures under one shared humanitarian mission and framework.</div>
+              </div>
+            </div>
+            <div class="about-card about-card-2">
+              <div class="about-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M12 3 L19 19 M12 3 L5 19 M7.5 14 L16.5 14" stroke="#0B2D52" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <div class="about-card-label">Mobilization</div>
+                <div class="about-card-desc">Converting student awareness into coordinated, real-world action through trusted NGO partnerships and centralized infrastructure.</div>
+              </div>
+            </div>
+            <div class="about-card about-card-3">
+              <div class="about-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M5 19 L9 13 L12 16 L16 9 L19 12" stroke="#589593" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="19" cy="12" r="1.5" fill="#589593"/></svg>
+              </div>
+              <div>
+                <div class="about-card-label">Impact</div>
+                <div class="about-card-desc">Mapping every effort directly to tangible humanitarian outcomes through transparent, partner-verified reporting.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="section" style="background:var(--gray-light);">
+    <div class="container">
+      <div style="max-width:800px;margin:0 auto;text-align:center;">
+        <div class="section-eyebrow" style="text-align:center;">Our Origins</div>
+        <h2 class="section-title" style="text-align:center;">Our Story</h2>
+        <p style="font-size:1.05rem;color:var(--gray);line-height:1.8;margin-bottom:24px;">Founded in 2025 by students who recognized a gap: students across campuses deeply cared about the humanitarian crisis affecting children in conflict zones, yet efforts remained fragmented, one-off, and unsustainable.</p>
+        <p style="font-size:1.05rem;color:var(--gray);line-height:1.8;margin-bottom:24px;">Bake sales happened. Awareness events took place. Donation drives came and went. But nothing stuck. There was no infrastructure connecting campus passion to consistent, measurable results on the ground.</p>
+        <p style="font-size:1.05rem;color:var(--gray);line-height:1.8;">GCHP was built to change that — creating a permanent, scalable infrastructure for student-led humanitarian engagement that outlasts any single event, any single semester, any single cohort of students.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;">
+        <div style="background:white;border-radius:var(--radius-lg);padding:32px 24px;text-align:center;box-shadow:var(--shadow);">
+          <div style="font-family:var(--font-head);font-weight:700;font-size:2.4rem;color:var(--teal);margin-bottom:8px;">2025</div>
+          <div style="font-weight:600;color:var(--navy);margin-bottom:8px;">Founded</div>
+          <div style="font-size:13.5px;color:var(--gray);line-height:1.6;">By students who saw the gap between campus compassion and meaningful action</div>
+        </div>
+        <div style="background:var(--navy);border-radius:var(--radius-lg);padding:32px 24px;text-align:center;box-shadow:var(--shadow);">
+          <div style="font-family:var(--font-head);font-weight:700;font-size:2.4rem;color:var(--teal-light);margin-bottom:8px;">3</div>
+          <div style="font-weight:600;color:white;margin-bottom:8px;">Core Pillars</div>
+          <div style="font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.6;">Unification, Mobilization, and Impact — the framework for everything we do</div>
+        </div>
+        <div style="background:white;border-radius:var(--radius-lg);padding:32px 24px;text-align:center;box-shadow:var(--shadow);">
+          <div style="font-family:var(--font-head);font-weight:700;font-size:2.4rem;color:var(--teal);margin-bottom:8px;">∞</div>
+          <div style="font-weight:600;color:var(--navy);margin-bottom:8px;">Sustained Impact</div>
+          <div style="font-size:13.5px;color:var(--gray);line-height:1.6;">Built to last beyond any single semester or cohort of students</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR VALUES -->
+  <section class="section" style="background:white;">
+    <div class="container">
+      <div class="section-header-center">
+        <div class="section-eyebrow">What Guides Us</div>
+        <h2 class="section-title">Our Values</h2>
+        <p class="section-subtitle">Every decision we make is grounded in these core commitments — to the children we serve, the students we mobilize, and the partners we work with.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;border-top:4px solid var(--teal);transition:transform 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(11,45,82,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M12 2 L2 7 L12 12 L22 7 Z" stroke="#589593" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 17 L12 22 L22 17" stroke="#589593" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12 L12 17 L22 12" stroke="#589593" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:10px;">Apolitical &amp; Accountable</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.65;">We stand apart from political affiliations. Our only allegiance is to humanitarian principles and the children who need support.</p>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;border-top:4px solid var(--navy);transition:transform 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(11,45,82,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(11,45,82,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="9" cy="8" r="3" stroke="#0B2D52" stroke-width="1.6"/><circle cx="17" cy="6" r="2.5" stroke="#0B2D52" stroke-width="1.4"/><path d="M3 20 C3 16.7 5.7 14 9 14 C12.3 14 15 16.7 15 20" stroke="#0B2D52" stroke-width="1.6" stroke-linecap="round"/><path d="M17 11 C18.5 11 21 12 21 15" stroke="#0B2D52" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:10px;">Student-Powered, Expert-Aligned</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.65;">Students lead. Established humanitarian NGOs implement. Each plays to their strengths within a shared mission.</p>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;border-top:4px solid var(--teal);transition:transform 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(11,45,82,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M9 11 L11 13 L15 9" stroke="#589593" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="3" width="18" height="18" rx="3" stroke="#589593" stroke-width="1.6"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:10px;">Transparent &amp; Evidence-Based</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.65;">We publish what we do, how it's funded, and what it achieves. Evidence drives decisions. Accountability is non-negotiable.</p>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;border-top:4px solid var(--navy);transition:transform 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(11,45,82,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(11,45,82,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M12 21 C12 21 4 16 4 10 C4 7.2 6.7 5 10 5 C10.9 5 11.8 5.2 12.6 5.7" stroke="#0B2D52" stroke-width="1.6" stroke-linecap="round"/><path d="M14 9 C15 7.5 17 7 18.5 8 C20 9 20.5 11 19.5 12.5 L14 19 L8.5 12.5" stroke="#0B2D52" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:10px;">Dignified Storytelling</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.65;">We tell stories of resilience, not victimhood. Children are full human beings, and our communication reflects that always.</p>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;border-top:4px solid var(--teal);transition:transform 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(11,45,82,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M3 12 L12 3 L21 12" stroke="#589593" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10 L5 20 L10 20 L10 15 L14 15 L14 20 L19 20 L19 10" stroke="#589593" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:10px;">Sustainable by Design</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.65;">We build infrastructure, not events. Systems, not one-offs. GCHP is designed to grow, adapt, and endure across generations of students.</p>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;border-top:4px solid var(--navy);transition:transform 0.25s ease,box-shadow 0.25s ease;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 48px rgba(11,45,82,0.16)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(11,45,82,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="12" r="9" stroke="#0B2D52" stroke-width="1.6"/><path d="M8 12 C8 10 10 8 12 8 C14 8 16 10 16 12 C16 14 14 16 12 16" stroke="#0B2D52" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="2" fill="#0B2D52"/></svg>
+          </div>
+          <h3 style="font-family:var(--font-head);font-weight:700;font-size:1.15rem;color:var(--navy);margin-bottom:10px;">Equity-Centered</h3>
+          <p style="font-size:14px;color:var(--gray);line-height:1.65;">Every child deserves access to health, education, and safety regardless of where conflict has placed them. Equity is not a goal — it is the foundation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="section" style="background:var(--navy);position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 30% 50%, rgba(88,149,147,0.15) 0%, transparent 70%);"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="section-header-center">
+        <div class="section-eyebrow light">Why We Exist</div>
+        <h2 class="section-title light">Mission &amp; Vision</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;max-width:960px;margin:0 auto;">
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-lg);padding:40px 36px;">
+          <div style="font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--teal-light);margin-bottom:20px;">Our Mission</div>
+          <p style="font-family:var(--font-head);font-size:1.2rem;color:white;line-height:1.65;font-style:italic;">"To unify and mobilize students across borders to expand opportunity, education, and healthcare for children affected by conflict in the Middle East through trusted humanitarian partnerships."</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-lg);padding:40px 36px;">
+          <div style="font-family:var(--font-body);font-weight:700;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--teal-light);margin-bottom:20px;">Our Vision</div>
+          <p style="font-family:var(--font-head);font-size:1.2rem;color:white;line-height:1.65;font-style:italic;">"To advance a world where war-affected children are supported, and young people everywhere are informed, unified, and equipped to act for global health and opportunity."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="container">
+      <div class="cta-band-inner">
+        <div>
+          <h2>Become part of the movement.</h2>
+          <p>Join a coordinated student initiative advancing child health equity across borders.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="get-involved.html" class="btn-primary-lg">Get Involved</a>
+          <a href="our-work.html" class="btn-outline-lg" style="border-color:rgba(255,255,255,0.4);color:#fff;">See Our Work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="logo.png?v=5" alt="GCHP" class="footer-logo" style="height:36px;width:auto;display:block;margin-bottom:14px;filter:brightness(0)invert(1);opacity:0.9;" />
+          <p>A student-led international initiative mobilizing students worldwide for child health equity.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="our-work.html">Our Work</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="our-team.html">Our Team</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="get-involved.html">Get Involved</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@gchproject.org">hello@gchproject.org</a></li>
+            <li><a href="get-involved.html">Join as Ambassador</a></li>
+            <li><a href="partners.html">NGO Partnerships</a></li>
+          <li><a href="https://instagram.com/globalchildhealthproject" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:6px;">
+            <svg viewBox="0 0 24 24" fill="none" width="14" height="14" style="flex-shrink:0;"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            @globalchildhealthproject
+          </a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Member Portal</h4>
+          <ul>
+            <li><button class="footer-login-btn" id="footerLoginBtn">Member Login</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Global Child Health Project. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="app.js"></script>
+  <script>
+    ['netlifyLoginBtn','mobileLoginBtn','footerLoginBtn'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.onclick = () => window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

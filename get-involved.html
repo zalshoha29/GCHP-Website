@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Involved — The Global Child Health Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png?v=5" alt="The Global Child Health Project" class="nav-logo-img" style="height:64px;width:auto;display:block;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="our-work.html">Our Work</a></li>
+        <li><a href="impact.html">Impact</a></li>
+        <li><a href="our-team.html">Our Team</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="get-involved.html" class="active">Get Involved</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-nav-login" id="netlifyLoginBtn">Member Login</button>
+        <a href="get-involved.html#donate" class="btn-nav-donate">Donate</a>
+      </div>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a href="about.html">About Us</a>
+      <a href="our-work.html">Our Work</a>
+      <a href="impact.html">Impact</a>
+      <a href="our-team.html">Our Team</a>
+      <a href="partners.html">Partners</a>
+      <a href="get-involved.html">Get Involved</a>
+      <button class="mobile-login" id="mobileLoginBtn">Member Login</button>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO BANNER -->
+  <section style="background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#0e3d6e 100%);padding:140px 0 80px;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(88,149,147,0.15) 0%,transparent 70%);"></div>
+    <div style="position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;border:1px solid rgba(88,149,147,0.12);box-shadow:0 0 0 60px rgba(88,149,147,0.05),0 0 0 120px rgba(88,149,147,0.03);"></div>
+    <div class="container" style="position:relative;z-index:2;">
+      <div class="section-eyebrow light" style="margin-bottom:16px;">Join the Movement</div>
+      <h1 style="font-family:var(--font-head);font-weight:700;font-size:clamp(2.4rem,5vw,3.6rem);color:white;line-height:1.1;margin-bottom:20px;">Get Involved</h1>
+      <p style="font-size:1.15rem;color:rgba(255,255,255,0.75);max-width:600px;line-height:1.7;">Whether you're a student, a university organization, or an NGO — there is a place for you in GCHP.</p>
+    </div>
+  </section>
+
+  <!-- THREE WAYS TO JOIN -->
+  <section class="get-involved section">
+    <div class="gi-bg"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="section-header-center">
+        <div class="section-eyebrow light">Choose Your Path</div>
+        <h2 class="section-title light">Three Ways to Get Involved</h2>
+        <p class="section-subtitle light">Every role matters. Every contribution counts. Find where you fit.</p>
+      </div>
+
+      <div class="gi-cards">
+
+        <!-- Become an Ambassador -->
+        <div class="gi-card">
+          <div class="gi-card-icon">
+            <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+              <circle cx="24" cy="16" r="7" stroke="white" stroke-width="2"/>
+              <path d="M8 42 C8 34.3 15.3 28 24 28 C32.7 28 40 34.3 40 42" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Become an Ambassador</h3>
+          <p>Represent GCHP on your campus. Recruit peers, organize events, and drive local action as part of a coordinated global student network. No prior experience required — just commitment and passion.</p>
+          <a href="mailto:hello@gchproject.org?subject=Ambassador Application" class="btn-gi">Apply Now</a>
+        </div>
+
+        <!-- Donate (featured/accent) -->
+        <div class="gi-card gi-card-featured" id="donate">
+          <div class="gi-card-icon">
+            <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+              <path d="M24 40 C24 40 8 30 8 18 C8 13.6 11.6 10 16 10 C18.7 10 21.2 11.3 24 14 C26.8 11.3 29.3 10 32 10 C36.4 10 40 13.6 40 18 C40 30 24 40 24 40 Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Donate</h3>
+          <p>Every contribution is mapped directly to tangible humanitarian results for children affected by conflict. 100% transparent, partner-verified impact. No donation is too small — and every dollar counts.</p>
+          <a href="#" class="btn-gi btn-gi-white">Donate Now</a>
+        </div>
+
+        <!-- Partner With Us -->
+        <div class="gi-card">
+          <div class="gi-card-icon">
+            <svg viewBox="0 0 48 48" fill="none" width="40" height="40">
+              <circle cx="16" cy="24" r="7" stroke="white" stroke-width="2"/>
+              <circle cx="34" cy="16" r="6" stroke="white" stroke-width="1.8"/>
+              <circle cx="34" cy="34" r="6" stroke="white" stroke-width="1.8"/>
+              <path d="M23 24 L28 19 M23 24 L28 31" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Partner With Us</h3>
+          <p>NGOs, universities, and student organizations: let's explore how collaboration can expand your reach, deepen your impact, and bring your mission into motivated student communities worldwide.</p>
+          <a href="partners.html#inquiry" class="btn-gi">Get in Touch</a>
+        </div>
+
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="gi-contact" id="contact" style="max-width:720px;margin-top:20px;">
+        <h4>Contact Us Directly</h4>
+        <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)">
+          <div class="form-row">
+            <input class="form-input" type="text" name="name" placeholder="Your Name" required />
+            <input class="form-input" type="email" name="email" placeholder="Email Address" required />
+          </div>
+          <div class="form-row">
+            <select class="form-input form-select" name="role" required>
+              <option value="" disabled selected>Your Role</option>
+              <option value="student">Student</option>
+              <option value="faculty">Faculty / University Staff</option>
+              <option value="ngo">NGO Representative</option>
+              <option value="donor">Donor</option>
+              <option value="other">Other</option>
+            </select>
+            <input class="form-input" type="text" name="subject" placeholder="Subject" required />
+          </div>
+          <textarea class="form-input form-textarea" name="message" placeholder="Your message..." required></textarea>
+          <button type="submit" class="btn-form-submit">Send Message</button>
+        </form>
+        <div id="contactSuccess" style="display:none;background:rgba(88,149,147,0.2);border:1.5px solid var(--teal);border-radius:var(--radius);padding:32px;text-align:center;margin-top:24px;">
+          <div style="font-family:var(--font-head);font-weight:700;font-size:1.4rem;color:white;margin-bottom:12px;">Message Sent!</div>
+          <p style="color:rgba(255,255,255,0.8);line-height:1.65;">Thank you for reaching out. We'll respond within 3–5 business days. In the meantime, follow us on Instagram for updates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT AMBASSADORS DO -->
+  <section class="section" style="background:white;">
+    <div class="container">
+      <div class="section-header-center">
+        <div class="section-eyebrow">Campus Leadership</div>
+        <h2 class="section-title">What Ambassadors Do</h2>
+        <p class="section-subtitle">GCHP Ambassadors are the heartbeat of the movement. Here is what your role looks like on the ground.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#589593" stroke-width="1.6"/><path d="M8 2 L8 6 M16 2 L16 6 M3 10 L21 10" stroke="#589593" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <h4 style="font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:var(--navy);margin-bottom:10px;">Organize Campus Events</h4>
+          <p style="font-size:13.5px;color:var(--gray);line-height:1.65;">Host educational events, awareness campaigns, and fundraising activities coordinated with the broader GCHP network.</p>
+        </div>
+        <div style="background:var(--navy);border-radius:var(--radius-lg);padding:32px 28px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="7" r="3" stroke="white" stroke-width="1.6"/><circle cx="5" cy="17" r="2.5" stroke="white" stroke-width="1.4"/><circle cx="19" cy="17" r="2.5" stroke="white" stroke-width="1.4"/><path d="M12 10 L5 14.5 M12 10 L19 14.5" stroke="white" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+          <h4 style="font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:white;margin-bottom:10px;">Recruit &amp; Mobilize Peers</h4>
+          <p style="font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.65;">Grow the GCHP network on your campus by engaging student organizations, recruiting volunteers, and building community around the mission.</p>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 17 L8 11 L12 14 L16 7 L20 10" stroke="#589593" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="10" r="2" fill="#589593"/></svg>
+          </div>
+          <h4 style="font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:var(--navy);margin-bottom:10px;">Drive Fundraising</h4>
+          <p style="font-size:13.5px;color:var(--gray);line-height:1.65;">Lead synchronized fundraising campaigns using GCHP's centralized infrastructure — every dollar tracked, every outcome verified.</p>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="2" y="4" width="20" height="16" rx="2" stroke="#589593" stroke-width="1.6"/><circle cx="8" cy="12" r="1.5" fill="#589593"/><circle cx="12" cy="12" r="1.5" fill="#589593"/><circle cx="16" cy="12" r="1.5" fill="#589593"/></svg>
+          </div>
+          <h4 style="font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:var(--navy);margin-bottom:10px;">Amplify on Social Media</h4>
+          <p style="font-size:13.5px;color:var(--gray);line-height:1.65;">Share campaign updates, educational content, and partner stories using coordinated messaging from GCHP's media team.</p>
+        </div>
+        <div style="background:var(--navy);border-radius:var(--radius-lg);padding:32px 28px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M12 2 L2 7 L12 12 L22 7 Z" stroke="white" stroke-width="1.6" stroke-linejoin="round"/><path d="M2 12 L12 17 L22 12" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 style="font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:white;margin-bottom:10px;">Build Lasting Infrastructure</h4>
+          <p style="font-size:13.5px;color:rgba(255,255,255,0.7);line-height:1.65;">Create something that outlasts you on campus — systems, relationships, and student chapters that continue when you graduate.</p>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius-lg);padding:32px 28px;">
+          <div style="width:48px;height:48px;border-radius:12px;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;margin-bottom:18px;">
+            <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="12" r="9" stroke="#589593" stroke-width="1.6"/><path d="M12 7 L12 12 L16 14" stroke="#589593" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 style="font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:var(--navy);margin-bottom:10px;">Develop as a Leader</h4>
+          <p style="font-size:13.5px;color:var(--gray);line-height:1.65;">Build real skills in project management, public health advocacy, event coordination, and international collaboration.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:48px;">
+        <a href="mailto:hello@gchproject.org?subject=Ambassador Application" class="btn-primary-lg">Apply to Be an Ambassador</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOLLOW US -->
+  <section style="background:var(--teal-pale);padding:64px 0;border-top:3px solid var(--teal);">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="section-eyebrow" style="text-align:center;margin-bottom:12px;">Stay Connected</div>
+        <h2 style="font-family:var(--font-head);font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);color:var(--navy);margin-bottom:16px;">Follow Our Journey</h2>
+        <p style="font-size:1.05rem;color:var(--gray);max-width:520px;margin:0 auto 32px;line-height:1.7;">Stay updated on campaigns, impact reports, ambassador stories, and opportunities to get involved. We share updates as we grow.</p>
+        <a href="https://instagram.com/gchproject" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:12px;background:var(--navy);color:white;padding:16px 32px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;transition:background 0.25s ease;" onmouseover="this.style.background='#589593'" onmouseout="this.style.background='var(--navy)'">
+          <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5" stroke="white" stroke-width="1.6"/><circle cx="12" cy="12" r="5" stroke="white" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.2" fill="white"/></svg>
+          Follow @gchproject on Instagram
+        </a>
+        <p style="font-size:13px;color:var(--gray);margin-top:16px;">Active account — campaign updates, ambassador spotlights, and impact stories.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="logo.png?v=5" alt="GCHP" class="footer-logo" style="height:36px;width:auto;display:block;margin-bottom:14px;filter:brightness(0)invert(1);opacity:0.9;" />
+          <p>A student-led international initiative mobilizing students worldwide for child health equity.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="our-work.html">Our Work</a></li>
+            <li><a href="impact.html">Impact</a></li>
+            <li><a href="our-team.html">Our Team</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="get-involved.html">Get Involved</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@gchproject.org">hello@gchproject.org</a></li>
+            <li><a href="get-involved.html">Join as Ambassador</a></li>
+            <li><a href="partners.html">NGO Partnerships</a></li>
+          <li><a href="https://instagram.com/globalchildhealthproject" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:6px;">
+            <svg viewBox="0 0 24 24" fill="none" width="14" height="14" style="flex-shrink:0;"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            @globalchildhealthproject
+          </a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Member Portal</h4>
+          <ul>
+            <li><button class="footer-login-btn" id="footerLoginBtn">Member Login</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 The Global Child Health Project. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="app.js"></script>
+  <script>
+    ['netlifyLoginBtn','mobileLoginBtn','footerLoginBtn'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.onclick = () => window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
