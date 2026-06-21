@@ -1,0 +1,175 @@
+/* =========================================
+   GCHP Portal — Shared portal styles
+   Extends styles.css + dashboard.css tokens.
+   ========================================= */
+
+/* Hide protected content until auth-guard confirms session */
+body:not(.auth-ready) .auth-gated { visibility: hidden; }
+
+/* ---- Cycle banner ---- */
+.cycle-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, #0e3660 100%);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.cycle-banner h2 { font-family: var(--font-head); font-size: 1.3rem; margin: 0 0 4px; }
+.cycle-banner .cb-sub { font-size: 13px; color: rgba(255,255,255,0.7); }
+.cycle-deadlines { display: flex; gap: 28px; }
+.cycle-deadline .cd-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.55); }
+.cycle-deadline .cd-date { font-size: 15px; font-weight: 600; margin-top: 2px; }
+
+/* ---- Event cards ---- */
+.event-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+.event-card {
+  background: #fff;
+  border: 1px solid var(--gray-mid);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.event-card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.event-card-head h3 { font-family: var(--font-head); font-size: 1.05rem; color: var(--navy); margin: 0; }
+.event-card .ec-meta { font-size: 12.5px; color: var(--gray); }
+.event-card .ec-meta strong { color: var(--navy); font-weight: 600; }
+
+/* ---- Status badges (all 10 statuses) ---- */
+.status-badge {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+.sb-pending      { background: #fef3c7; color: #b45309; }   /* Submitted / Resubmitted - Pending */
+.sb-approved     { background: #dbeafe; color: #1d4ed8; }   /* Approved - Awaiting Link */
+.sb-link         { background: #dcfce7; color: #15803d; }   /* Approved - Link Sent */
+.sb-eventdone    { background: #e0e7ff; color: #4338ca; }   /* Event Complete - Awaiting Report */
+.sb-awaitimpact  { background: #ccfbf1; color: #0f766e; }   /* Completed - Awaiting Impact Report */
+.sb-delivered    { background: #d1fae5; color: #047857; }   /* Complete - Impact Report Delivered */
+.sb-incomplete   { background: #fee2e2; color: #b91c1c; }   /* Incomplete - No Report */
+.sb-denied       { background: #fee2e2; color: #b91c1c; }   /* Denied */
+.sb-cancelled    { background: #f3f4f6; color: #6b7280; }   /* Cancelled */
+
+/* ---- Fundraising link display ---- */
+.link-box {
+  background: var(--teal-pale);
+  border: 1px solid rgba(88,149,147,0.3);
+  border-radius: 9px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.link-box .lb-url { flex: 1; font-size: 12.5px; color: var(--navy); font-family: monospace; word-break: break-all; }
+.link-box .lb-copy {
+  background: var(--teal); color: #fff; border: none; border-radius: 7px;
+  padding: 7px 13px; font-size: 12.5px; font-weight: 600; cursor: pointer; flex-shrink: 0;
+}
+.link-box .lb-copy:hover { background: #4a807e; }
+
+/* ---- Resubmit notice ---- */
+.resubmit-notice {
+  background: #fef2f2; border: 1px solid #fecaca; border-radius: 9px;
+  padding: 12px 14px; font-size: 12.5px; color: #991b1b;
+}
+.resubmit-notice .btn-resubmit {
+  display: inline-block; margin-top: 8px; background: var(--navy); color: #fff;
+  text-decoration: none; border-radius: 7px; padding: 7px 14px; font-size: 12.5px; font-weight: 600;
+}
+
+/* ---- Lifetime stats ---- */
+.lifetime-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 8px; }
+.ls-card { background: #fff; border: 1px solid var(--gray-mid); border-radius: var(--radius); padding: 18px 20px; }
+.ls-card .ls-num { font-family: var(--font-head); font-size: 1.7rem; font-weight: 700; color: var(--navy); }
+.ls-card .ls-label { font-size: 12.5px; color: var(--gray); margin-top: 2px; }
+
+/* ---- Empty state ---- */
+.empty-state { text-align: center; padding: 56px 24px; color: var(--gray); font-size: 14px; }
+.empty-state svg { opacity: 0.4; margin-bottom: 12px; }
+
+/* ---- Generic portal section ---- */
+.portal-section { margin-bottom: 36px; }
+.portal-section > h2 {
+  font-family: var(--font-head); font-size: 1.15rem; color: var(--navy);
+  margin: 0 0 14px; display: flex; align-items: center; gap: 8px;
+}
+
+/* ---- Forms (D1/D2) ---- */
+.portal-form { max-width: 760px; }
+.form-section-block {
+  background: #fff; border: 1px solid var(--gray-mid); border-radius: var(--radius);
+  padding: 22px 24px; margin-bottom: 20px;
+}
+.form-section-block h3 {
+  font-family: var(--font-head); font-size: 1.05rem; color: var(--navy);
+  margin: 0 0 16px; padding-bottom: 10px; border-bottom: 1px solid var(--gray-mid);
+}
+.pf-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.pf-group label { font-size: 13px; font-weight: 600; color: var(--navy); }
+.pf-group label .req { color: #dc2626; }
+.pf-group input[type=text], .pf-group input[type=number], .pf-group input[type=date],
+.pf-group input[type=url], .pf-group select, .pf-group textarea {
+  width: 100%; padding: 11px 13px; border: 1.5px solid var(--gray-mid);
+  border-radius: 8px; font-family: var(--font-body); font-size: 14px;
+  color: var(--navy); background: var(--gray-light); box-sizing: border-box;
+}
+.pf-group input:focus, .pf-group select:focus, .pf-group textarea:focus {
+  outline: none; border-color: var(--teal); background: #fff;
+  box-shadow: 0 0 0 3px rgba(88,149,147,0.12);
+}
+.pf-group textarea { min-height: 84px; resize: vertical; }
+.pf-group .pf-hint { font-size: 12px; color: var(--gray); }
+.pf-readonly { background: #eef1f4 !important; color: var(--gray) !important; }
+.pf-checks { display: flex; flex-direction: column; gap: 10px; }
+.pf-check { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; color: var(--navy); }
+.pf-check input { margin-top: 2px; }
+.pf-row { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
+.btn-portal {
+  background: var(--navy); color: #fff; border: none; border-radius: 9px;
+  padding: 13px 26px; font-family: var(--font-body); font-weight: 600; font-size: 14.5px;
+  cursor: pointer; transition: background 0.2s, transform 0.2s;
+}
+.btn-portal:hover { background: var(--teal); transform: translateY(-1px); }
+.btn-portal:disabled { opacity: 0.6; pointer-events: none; }
+.btn-portal.secondary { background: #fff; color: var(--navy); border: 1.5px solid var(--gray-mid); }
+
+/* ---- Toast / inline feedback ---- */
+.portal-toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--navy); color: #fff; padding: 14px 20px; border-radius: 10px;
+  font-size: 13.5px; box-shadow: var(--shadow-lg); max-width: 360px;
+  opacity: 0; transform: translateY(10px); transition: opacity 0.25s, transform 0.25s;
+}
+.portal-toast.show { opacity: 1; transform: translateY(0); }
+.portal-toast.success { background: #15803d; }
+.portal-toast.error { background: #b91c1c; }
+
+/* ---- Form response view (D1/D2 detail) ---- */
+.frv-section { margin-bottom: 22px; }
+.frv-section .frv-title {
+  font-family: var(--font-head); font-size: 0.95rem; color: var(--navy);
+  margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--gray-mid);
+}
+.frv-row { padding: 8px 0; border-bottom: 1px solid #f1f3f5; }
+.frv-q { font-size: 12px; color: var(--gray); margin-bottom: 2px; }
+.frv-a { font-size: 14px; color: var(--navy); }
+.frv-a .no-answer { color: #aab0ba; font-style: italic; }
+.frv-internal {
+  background: #fff7ed; border: 1px solid #fed7aa; border-radius: var(--radius);
+  padding: 18px 20px; margin-top: 18px;
+}
+.frv-internal .frv-internal-label {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: #c2410c; font-weight: 700; margin-bottom: 12px;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Report — GCHP Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="portal/portal.css" />
+</head>
+<body class="dash-body" data-require-role="ambassador">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-text">
+        <span class="logo-the">THE</span>
+        <span class="logo-main">GLOBAL CHILD HEALTH</span>
+        <span class="logo-project">PROJECT</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Portal</div>
+      <a href="dashboard.html" class="sidebar-link"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="2" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/></svg> Home</a>
+      <a href="submit-d1.html" class="sidebar-link"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M7 7 L13 7 M7 10 L13 10 M7 13 L10 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Submit Event Plan (D1)</a>
+      <a href="submit-d2.html" class="sidebar-link active"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2 L10 13 M6 9 L10 13 L14 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16 L17 16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Submit Report (D2)</a>
+      <a href="reports.html" class="sidebar-link"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="4" y="2" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M7 6 L13 6 M7 9 L13 9 M7 12 L11 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Impact Reports</a>
+      <a href="messages.html" class="sidebar-link"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M3 5 L10 11 L17 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Messages <span class="nav-badge" id="msgBadge" style="display:none;"></span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" data-user-avatar>--</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" data-user-name>Loading...</div>
+          <div class="sidebar-user-role" data-user-role>Ambassador</div>
+        </div>
+      </div>
+      <a href="#" class="sidebar-logout" data-logout><svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="M7 3 L3 3 C2.4 3 2 3.4 2 4 L2 16 C2 16.6 2.4 17 3 17 L7 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13 7 L18 10 L13 13 M18 10 L8 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Sign Out</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <header class="dash-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+        <div class="topbar-breadcrumb"><span>Submit Report</span></div>
+      </div>
+      <div class="topbar-right"><a href="dashboard.html" class="topbar-site-link">&#8592; Back to Home</a></div>
+    </header>
+
+    <div class="dash-content auth-gated">
+      <div class="view-header">
+        <div>
+          <h1 class="view-title">Submit Post-Event Report (Deliverable 2)</h1>
+          <p class="view-subtitle">Report your results after your event has taken place.</p>
+        </div>
+      </div>
+
+      <!-- Event selector (shown when there are eligible events) -->
+      <div id="selectorWrap" class="form-section-block" style="display:none;">
+        <h3>Select Event</h3>
+        <div class="pf-group">
+          <label>Which event is this report for? <span class="req">*</span></label>
+          <select id="eventSelect"></select>
+        </div>
+      </div>
+
+      <div id="noEligible" class="empty-state" style="display:none;">
+        <svg viewBox="0 0 48 48" fill="none" width="48" height="48"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/><path d="M16 24 L22 30 L33 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>You have no events currently awaiting a post-event report.</p>
+      </div>
+
+      <form class="portal-form" id="d2Form" style="display:none;">
+
+        <!-- Section A: Results -->
+        <div class="form-section-block">
+          <h3>Section A — Results</h3>
+          <div class="pf-group"><label>Total Amount Raised ($) <span class="req">*</span></label><input type="number" id="total_raised" min="0" step="0.01" required /></div>
+          <div class="pf-group">
+            <label>Have you submitted the donations? <span class="req">*</span></label>
+            <select id="donations_submitted" required><option value="">Select…</option><option value="true">Yes</option><option value="false">No</option></select>
+            <span class="pf-hint">Confirm whether the funds raised have been donated to the charity through your link.</span>
+          </div>
+          <div class="pf-group"><label>Actual Attendance</label><input type="number" id="attendance" min="0" /></div>
+          <div class="pf-group">
+            <label>Did you meet your target?</label>
+            <select id="target_met"><option value="">Select…</option><option>Met</option><option>Close</option><option>Under</option></select>
+          </div>
+        </div>
+
+        <!-- Section B: Reflections -->
+        <div class="form-section-block">
+          <h3>Section B — Reflections</h3>
+          <div class="pf-group"><label>What went well?</label><textarea id="what_went_well"></textarea></div>
+          <div class="pf-group"><label>What would you change?</label><textarea id="what_to_change"></textarea></div>
+          <div class="pf-group"><label>Advice for other ambassadors?</label><textarea id="advice_for_others"></textarea></div>
+        </div>
+
+        <!-- Section C: Follow-Up -->
+        <div class="form-section-block">
+          <h3>Section C — Follow-Up</h3>
+          <div class="pf-group">
+            <label>Would you run another event?</label>
+            <select id="run_another_event"><option value="">Select…</option><option value="true">Yes</option><option value="false">No</option></select>
+          </div>
+        </div>
+
+        <!-- Section D: Photos & Feedback -->
+        <div class="form-section-block">
+          <h3>Section D — Photos &amp; Feedback</h3>
+          <div class="pf-group">
+            <label>Event Photo (optional)</label>
+            <input type="file" id="photo_file" accept="image/*" />
+            <span class="pf-hint">JPG or PNG. Uploaded securely; only GCHP can view it.</span>
+          </div>
+          <div class="pf-check" style="margin-bottom:16px;"><input type="checkbox" id="photo_permission"> <label for="photo_permission" style="font-weight:400;">I give permission for GCHP to use this photo.</label></div>
+          <div class="pf-group">
+            <label>Experience rating</label>
+            <select id="experience_rating"><option value="">Select…</option><option value="5">5 — Excellent</option><option value="4">4 — Good</option><option value="3">3 — Okay</option><option value="2">2 — Poor</option><option value="1">1 — Very poor</option></select>
+          </div>
+          <div class="pf-group"><label>Open feedback</label><textarea id="open_feedback"></textarea></div>
+        </div>
+
+        <div id="formError" class="auth-error" style="display:none;"><span id="formErrorMsg"></span></div>
+
+        <button type="submit" class="btn-portal" id="submitBtn"><span>Submit Report</span></button>
+      </form>
+    </div>
+  </main>
+
+  <div class="portal-toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="portal/supabase-client.js"></script>
+  <script src="portal/auth-guard.js"></script>
+  <script src="portal/submit-d2.js"></script>
+</body>
+</html>

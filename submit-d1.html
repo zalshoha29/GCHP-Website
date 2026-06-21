@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Event Plan — GCHP Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="portal/portal.css" />
+</head>
+<body class="dash-body" data-require-role="ambassador">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-text">
+        <span class="logo-the">THE</span>
+        <span class="logo-main">GLOBAL CHILD HEALTH</span>
+        <span class="logo-project">PROJECT</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Portal</div>
+      <a href="dashboard.html" class="sidebar-link"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="2" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="2" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/><rect x="11" y="11" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4"/></svg> Home</a>
+      <a href="submit-d1.html" class="sidebar-link active"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M7 7 L13 7 M7 10 L13 10 M7 13 L10 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Submit Event Plan (D1)</a>
+      <a href="submit-d2.html" class="sidebar-link"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M10 2 L10 13 M6 9 L10 13 L14 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 16 L17 16" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Submit Report (D2)</a>
+      <a href="reports.html" class="sidebar-link"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="4" y="2" width="12" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M7 6 L13 6 M7 9 L13 9 M7 12 L11 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Impact Reports</a>
+      <a href="messages.html" class="sidebar-link"><svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M3 5 L10 11 L17 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg> Messages <span class="nav-badge" id="msgBadge" style="display:none;"></span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" data-user-avatar>--</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" data-user-name>Loading...</div>
+          <div class="sidebar-user-role" data-user-role>Ambassador</div>
+        </div>
+      </div>
+      <a href="#" class="sidebar-logout" data-logout><svg viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="M7 3 L3 3 C2.4 3 2 3.4 2 4 L2 16 C2 16.6 2.4 17 3 17 L7 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M13 7 L18 10 L13 13 M18 10 L8 10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Sign Out</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <header class="dash-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar"><span></span><span></span><span></span></button>
+        <div class="topbar-breadcrumb"><span id="formCrumb">Submit Event Plan</span></div>
+      </div>
+      <div class="topbar-right"><a href="dashboard.html" class="topbar-site-link">&#8592; Back to Home</a></div>
+    </header>
+
+    <div class="dash-content auth-gated">
+      <div class="view-header">
+        <div>
+          <h1 class="view-title" id="formTitle">Submit Event Plan (Deliverable 1)</h1>
+          <p class="view-subtitle" id="formSub">Register a new fundraising event for review by GCHP.</p>
+        </div>
+      </div>
+
+      <div id="resubmitBanner"></div>
+
+      <form class="portal-form" id="d1Form">
+
+        <!-- Section A -->
+        <div class="form-section-block">
+          <h3>Section A — Ambassador &amp; Campus</h3>
+          <div class="pf-group">
+            <label>Campaign Cycle</label>
+            <input type="text" id="campaign_cycle" class="pf-readonly" readonly />
+          </div>
+          <div class="pf-group">
+            <label>University</label>
+            <input type="text" id="university" class="pf-readonly" readonly />
+          </div>
+        </div>
+
+        <!-- Section B -->
+        <div class="form-section-block">
+          <h3>Section B — Event Details</h3>
+          <div class="pf-group">
+            <label>Event Name <span class="req">*</span></label>
+            <input type="text" id="event_name" required />
+          </div>
+          <div class="pf-group">
+            <label>Activity Type</label>
+            <select id="activity_type">
+              <option value="">Select…</option>
+              <option>Bake Sale</option><option>Quiz Night</option><option>Sports Event</option>
+              <option>Auction</option><option>Raffle</option><option>Concert/Performance</option>
+              <option>Art Sale</option><option>Sponsored Challenge</option><option>Film Night</option>
+              <option>Market Stall</option><option>Gala/Dinner</option><option>Online Campaign</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="pf-group" id="activityOtherWrap" style="display:none;">
+            <label>Please specify activity type</label>
+            <input type="text" id="activity_type_other" />
+          </div>
+          <div class="pf-group">
+            <label>Event Date <span class="req">*</span></label>
+            <input type="date" id="event_date" required />
+            <span class="pf-hint">Must be a future date.</span>
+          </div>
+          <div class="pf-group">
+            <label>Location</label>
+            <input type="text" id="event_location" />
+          </div>
+          <div class="pf-group">
+            <label>Format</label>
+            <select id="event_format">
+              <option value="">Select…</option>
+              <option>In-Person</option><option>Online</option><option>Hybrid</option>
+            </select>
+          </div>
+          <div class="pf-group">
+            <label>Event Description</label>
+            <textarea id="description"></textarea>
+          </div>
+          <div class="pf-row">
+            <div class="pf-group"><label>Expected Attendance</label><input type="number" id="expected_attendance" min="0" /></div>
+            <div class="pf-group"><label>Number of Volunteers</label><input type="number" id="volunteer_count" min="0" /></div>
+          </div>
+        </div>
+
+        <!-- Section C -->
+        <div class="form-section-block">
+          <h3>Section C — Fundraising Target</h3>
+          <div class="pf-group"><label>Fundraising Target ($)</label><input type="number" id="fundraising_target" min="0" step="0.01" /></div>
+        </div>
+
+        <!-- Section D -->
+        <div class="form-section-block">
+          <h3>Section D — Budget &amp; Promotion</h3>
+          <div class="pf-group">
+            <label>Do you expect any expenses?</label>
+            <select id="has_expenses"><option value="false">No</option><option value="true">Yes</option></select>
+          </div>
+          <div id="expenseRows" style="display:none;">
+            <div class="pf-row"><div class="pf-group"><label>Expense 1 — Description</label><input type="text" id="expense_1_description" /></div><div class="pf-group"><label>Cost ($)</label><input type="number" id="expense_1_cost" min="0" step="0.01" /></div></div>
+            <div class="pf-row"><div class="pf-group"><label>Expense 2 — Description</label><input type="text" id="expense_2_description" /></div><div class="pf-group"><label>Cost ($)</label><input type="number" id="expense_2_cost" min="0" step="0.01" /></div></div>
+            <div class="pf-row"><div class="pf-group"><label>Expense 3 — Description</label><input type="text" id="expense_3_description" /></div><div class="pf-group"><label>Cost ($)</label><input type="number" id="expense_3_cost" min="0" step="0.01" /></div></div>
+          </div>
+          <div class="pf-group">
+            <label>Promotion Channels</label>
+            <div class="pf-checks" id="promoChannels">
+              <label class="pf-check"><input type="checkbox" value="Instagram"> Instagram</label>
+              <label class="pf-check"><input type="checkbox" value="TikTok"> TikTok</label>
+              <label class="pf-check"><input type="checkbox" value="WhatsApp"> WhatsApp</label>
+              <label class="pf-check"><input type="checkbox" value="Discord"> Discord</label>
+              <label class="pf-check"><input type="checkbox" value="Email"> Email / Newsletter</label>
+              <label class="pf-check"><input type="checkbox" value="In-Person"> In-Person</label>
+              <label class="pf-check"><input type="checkbox" value="University Channels"> University Channels</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section E -->
+        <div class="form-section-block">
+          <h3>Section E — Confirmation &amp; Support</h3>
+          <div class="pf-checks" style="margin-bottom:16px;">
+            <label class="pf-check"><input type="checkbox" id="confirm_guide" required> I have read the Activities Guide. <span class="req">*</span></label>
+            <label class="pf-check"><input type="checkbox" id="confirm_nopromo" required> I will not promote this event until I receive my fundraising link from GCHP. <span class="req">*</span></label>
+          </div>
+          <div class="pf-group"><label>Support Requests (optional)</label><textarea id="support_requests"></textarea></div>
+          <div class="pf-group"><label>Additional Comments (optional)</label><textarea id="comments"></textarea></div>
+        </div>
+
+        <div id="formError" class="auth-error" style="display:none;"><span id="formErrorMsg"></span></div>
+
+        <button type="submit" class="btn-portal" id="submitBtn"><span>Submit Event Plan</span></button>
+      </form>
+    </div>
+  </main>
+
+  <div class="portal-toast" id="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="portal/supabase-client.js"></script>
+  <script src="portal/auth-guard.js"></script>
+  <script src="portal/submit-d1.js"></script>
+</body>
+</html>
