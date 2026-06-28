@@ -76,7 +76,6 @@ function buildD1Sections(event) {
       { question: 'Date Approved', answer: fmtDateTime(event.date_approved) },
       { question: 'Date Link Sent', answer: fmtDateTime(event.date_link_sent) },
       { question: 'Denial Reason', answer: event.denial_reason },
-      { question: 'Promotion Status', answer: event.promotion_status },
       { question: 'Duplicate Flagged', answer: event.is_duplicate_flagged ? 'Yes — review before approving' : 'No' },
     ]},
   ];

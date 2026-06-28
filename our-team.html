@@ -8,6 +8,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=5" />
+  <style>
+    /* Team cards: fixed 3-per-row width so the centered flex layout keeps 3 across,
+       with the final partial row centered under them. */
+    .core-leaders-flex > .core-leader-card {
+      flex: 0 1 calc((100% - 48px) / 3);
+      max-width: calc((100% - 48px) / 3);
+      box-sizing: border-box;
+    }
+    @media (max-width: 768px) {
+      .core-leaders-flex > .core-leader-card {
+        flex-basis: calc((100% - 24px) / 2);
+        max-width: calc((100% - 24px) / 2);
+      }
+    }
+    @media (max-width: 480px) {
+      .core-leaders-flex > .core-leader-card { flex-basis: 100%; max-width: 100%; }
+    }
+  </style>
 </head>
 <body>
 
@@ -58,7 +76,7 @@
   <!-- TEAM GRID -->
   <section class="section" style="background:var(--gray-light);">
     <div class="container">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <div class="core-leaders-flex" style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px;">
 
         <div class="core-leader-card">
           <div class="core-leader-avatar" style="background:#0B2D52;">ZA</div>
