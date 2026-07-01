@@ -77,8 +77,7 @@ async function loadExisting() {
   c.querySelectorAll('[data-dl]').forEach(b => b.addEventListener('click', async () => {
     const { data: signed, error } = await sb.storage.from('materials').createSignedUrl(b.dataset.dl, 3600);
     if (error) { toast('Download failed: '+error.message, 'error'); return; }
-    const a = document.createElement('a'); a.href = signed.signedUrl; a.download = b.dataset.name;
-    document.body.appendChild(a); a.click(); a.remove();
+    window.open(signed.signedUrl, '_blank', 'noopener');
   }));
   c.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', async () => {
     if (!confirm('Delete this material? Ambassadors will no longer see it.')) return;

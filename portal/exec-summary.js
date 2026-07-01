@@ -78,40 +78,110 @@ async function loadHistory() {
 }
 
 // Excel export: Tab 1 = current cycle totals; Tab 2 = all cycles data.
-function exportExcel() {
+// Excel tab names: max 31 chars, no : \ / ? * [ ]
+function sheetName(name, used) {
+  let base = String(name).replace(/[:\\/?*\[\]]/g, ' ').trim().slice(0, 28) || 'Cycle';
+  let n = base, i = 2;
+  while (used.has(n)) { n = base.slice(0, 25) + ' (' + i + ')'; i++; }
+  used.add(n);
+  return n;
+}
+
+async function exportExcel() {
   if (typeof XLSX === 'undefined') { toast('Export library not loaded.', 'error'); return; }
-  if (!currentSummary && !historyRows.length) { toast('Nothing to export yet — generate a summary first.', 'error'); return; }
+  toast('Building workbook…');
+
+  // Pull every cycle, and all events joined with ambassador + D2 report.
+  const { data: allCycles, error: cErr } = await sb.from('cycles').select('*').order('start_date', { ascending: true });
+  if (cErr) { toast('Export failed: ' + cErr.message, 'error'); return; }
+
+  const { data: events, error: eErr } = await sb.from('events')
+    .select('*, profiles(display_name, ambassador_id, university), post_reports(*)');
+  if (eErr) { toast('Export failed: ' + eErr.message, 'error'); return; }
 
   const wb = XLSX.utils.book_new();
+  const usedNames = new Set();
 
-  // Sheet 1 — Current Totals (the active cycle's summary as key/value rows).
-  if (currentSummary) {
-    const cur = [
-      ['Metric', 'Value'],
-      ['Cycle', activeCycle?.cycle_name || ''],
-      ['Total Raised ($)', Number(currentSummary.total_raised||0)],
-      ['Events Submitted', currentSummary.total_events_submitted||0],
-      ['Events Approved', currentSummary.total_events_approved||0],
-      ['Events Completed', currentSummary.total_events_completed||0],
-      ['D2 Completion Rate (%)', currentSummary.d2_completion_rate||0],
-      ['Total Ambassadors', currentSummary.total_ambassadors||0],
-      ['Returning Ambassadors', currentSummary.returning_ambassadors||0],
-      ['First-time Ambassadors', currentSummary.first_time_ambassadors||0],
-      ['Generated', new Date(currentSummary.generated_at).toLocaleString('en-GB')],
+  const EVENT_HEADER = [
+    'Event ID','Event Name','Activity Type','Event Date','Status','Scenario',
+    'Ambassador','Ambassador ID','University',
+    'Fundraising Target ($)','Fundraising Code',
+    'D2 Submitted','Total Raised ($)','Attendance','Target Met','Donations Submitted',
+    'Would Run Again','Experience Rating','Report Date','What Went Well','What To Change','Advice For Others','Open Feedback'
+  ];
+
+  function eventRow(e) {
+    const p = e.profiles || {};
+    const r = (e.post_reports && e.post_reports[0]) || null;
+    return [
+      e.event_id||'', e.event_name||'', e.activity_type||'', e.event_date||'', e.status||'', e.scenario||'',
+      p.display_name||'', p.ambassador_id||'', p.university||'',
+      Number(e.fundraising_target||0), e.fundraising_code||'',
+      r ? 'Yes' : 'No',
+      r ? Number(r.total_raised||0) : '', r ? (r.attendance ?? '') : '', r ? (r.target_met||'') : '',
+      r ? (r.donations_submitted ? 'Yes':'No') : '',
+      r ? (r.run_another_event ? 'Yes':'No') : '', r ? (r.experience_rating ?? '') : '',
+      r && r.date_submitted ? new Date(r.date_submitted).toLocaleDateString('en-GB') : '',
+      r ? (r.what_went_well||'') : '', r ? (r.what_to_change||'') : '', r ? (r.advice_for_others||'') : '',
+      r ? (r.open_feedback||'') : '',
     ];
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(cur), 'Current Totals');
   }
 
-  // Sheet 2 — All Cycles (one row per cycle summary).
-  const header = ['Cycle','Total Raised','Events Submitted','Events Approved','Events Completed','D2 Completion Rate (%)','Total Ambassadors','Returning','First-time','Generated'];
-  const rows = historyRows.map(r => [
-    r.cycles?.cycle_name || '', Number(r.total_raised||0), r.total_events_submitted||0,
-    r.total_events_approved||0, r.total_events_completed||0, r.d2_completion_rate||0,
-    r.total_ambassadors||0, r.returning_ambassadors||0, r.first_time_ambassadors||0,
-    new Date(r.generated_at).toLocaleDateString('en-GB'),
-  ]);
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([header, ...rows]), 'All Cycles');
+  const COMPLETED = ['Completed — Awaiting Impact Report','Complete — Impact Report Delivered'];
 
-  XLSX.writeFile(wb, `GCHP_Cycle_Summary_${new Date().toISOString().split('T')[0]}.xlsx`);
+  // ---- One detailed tab per cycle ----
+  (allCycles||[]).forEach(cy => {
+    const cyEvents = (events||[]).filter(e => e.cycle_id === cy.id);
+    const rows = cyEvents.map(eventRow);
+
+    // Small header block above the event table.
+    const raised = cyEvents.reduce((s,e)=> s + ((e.post_reports&&e.post_reports[0]) ? Number(e.post_reports[0].total_raised||0):0), 0);
+    const meta = [
+      [cy.cycle_name || 'Cycle'],
+      ['Dates', `${cy.start_date||''} to ${cy.end_date||''}`],
+      ['Scenario', cy.scenario||'—'],
+      ['Events', cyEvents.length, 'Completed', cyEvents.filter(e=>COMPLETED.includes(e.status)).length],
+      ['Total Raised ($)', raised],
+      [],
+      EVENT_HEADER,
+      ...rows,
+    ];
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(meta), sheetName(cy.cycle_name, usedNames));
+  });
+
+  // ---- Cumulative tab across all cycles ----
+  const perCycle = (allCycles||[]).map(cy => {
+    const cyEvents = (events||[]).filter(e => e.cycle_id === cy.id);
+    const completed = cyEvents.filter(e=>COMPLETED.includes(e.status));
+    const withReport = cyEvents.filter(e=> e.post_reports && e.post_reports.length);
+    const raised = cyEvents.reduce((s,e)=> s + ((e.post_reports&&e.post_reports[0]) ? Number(e.post_reports[0].total_raised||0):0), 0);
+    const ambs = new Set(cyEvents.map(e=>e.ambassador_id));
+    return {
+      name: cy.cycle_name||'', scenario: cy.scenario||'—', events: cyEvents.length,
+      completed: completed.length, d2rate: completed.length ? Math.round(withReport.length/completed.length*100) : 0,
+      raised, ambassadors: ambs.size,
+    };
+  });
+  const totalRaised = perCycle.reduce((s,c)=>s+c.raised,0);
+  const totalEvents = perCycle.reduce((s,c)=>s+c.events,0);
+  const totalCompleted = perCycle.reduce((s,c)=>s+c.completed,0);
+
+  const cumulative = [
+    ['GCHP — Cumulative Report (All Cycles)'],
+    ['Generated', new Date().toLocaleString('en-GB')],
+    [],
+    ['TOTALS'],
+    ['Total Raised ($)', totalRaised],
+    ['Total Events', totalEvents],
+    ['Total Completed Events', totalCompleted],
+    ['Cycles', perCycle.length],
+    [],
+    ['PER CYCLE'],
+    ['Cycle','Scenario','Events','Completed','D2 Completion (%)','Total Raised ($)','Ambassadors'],
+    ...perCycle.map(c => [c.name, c.scenario, c.events, c.completed, c.d2rate, c.raised, c.ambassadors]),
+  ];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(cumulative), sheetName('Cumulative', usedNames));
+
+  XLSX.writeFile(wb, `GCHP_Full_Report_${new Date().toISOString().split('T')[0]}.xlsx`);
   toast('Excel file downloaded.', 'success');
 }

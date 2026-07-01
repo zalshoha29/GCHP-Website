@@ -40,9 +40,7 @@ async function loadMaterials() {
     btn.addEventListener('click', async () => {
       const { data: signed, error } = await sb.storage.from('materials').createSignedUrl(btn.dataset.download, 3600);
       if (error) { toast('Could not download: ' + error.message, 'error'); return; }
-      const a = document.createElement('a');
-      a.href = signed.signedUrl; a.download = btn.dataset.name;
-      document.body.appendChild(a); a.click(); a.remove();
+      window.open(signed.signedUrl, '_blank', 'noopener');
     });
   });
 }
