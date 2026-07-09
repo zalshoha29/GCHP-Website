@@ -78,6 +78,31 @@
           </button>
         </form>
 
+        <!-- Set-password form: shown only when arriving from an invite / reset link -->
+        <form class="auth-form" id="setPwForm" style="display:none;">
+          <div class="form-group">
+            <label for="newPassword">New Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="4" y="9" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 9 V6.5 A3 3 0 0 1 13 6.5 V9" stroke="currentColor" stroke-width="1.4"/></svg>
+              </span>
+              <input type="password" id="newPassword" placeholder="Choose a password (min. 8 characters)" required autocomplete="new-password" minlength="8" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="input-wrap">
+              <span class="input-icon">
+                <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><rect x="4" y="9" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 9 V6.5 A3 3 0 0 1 13 6.5 V9" stroke="currentColor" stroke-width="1.4"/></svg>
+              </span>
+              <input type="password" id="confirmPassword" placeholder="Re-enter your password" required autocomplete="new-password" minlength="8" />
+            </div>
+          </div>
+          <button type="submit" class="btn-auth-submit" id="setPwBtn">
+            <span>Set Password &amp; Continue</span>
+          </button>
+        </form>
+
         <div class="auth-info-box" style="margin-top:24px;">
           <strong>Need access?</strong> GCHP accounts are created by the team. To request one, contact
           <a href="mailto:admin@globalchildhealthproject.org">admin@globalchildhealthproject.org</a>.
