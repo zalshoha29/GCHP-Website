@@ -28,9 +28,10 @@ function showError(msg) {
 document.getElementById('activity_type').addEventListener('change', (e) => {
   document.getElementById('activityOtherWrap').style.display = e.target.value === 'Other' ? 'flex' : 'none';
 });
-// Conditional UI: expenses
-document.getElementById('has_expenses').addEventListener('change', (e) => {
-  document.getElementById('expenseRows').style.display = e.target.value === 'true' ? 'block' : 'none';
+// Conditional UI: "Other" promotion channel reveals a free-text field.
+document.getElementById('promoOther').addEventListener('change', (e) => {
+  document.getElementById('promoOtherWrap').style.display = e.target.checked ? 'block' : 'none';
+  if (!e.target.checked) document.getElementById('promotion_other').value = '';
 });
 
 document.addEventListener('gchp:ready', async (e) => {
@@ -105,13 +106,6 @@ async function enterResubmitMode(profile) {
   setVal('expected_attendance', data.expected_attendance);
   setVal('volunteer_count', data.volunteer_count);
   setVal('fundraising_target', data.fundraising_target);
-  if (data.has_expenses) {
-    setVal('has_expenses', 'true');
-    document.getElementById('expenseRows').style.display = 'block';
-    setVal('expense_1_description', data.expense_1_description); setVal('expense_1_cost', data.expense_1_cost);
-    setVal('expense_2_description', data.expense_2_description); setVal('expense_2_cost', data.expense_2_cost);
-    setVal('expense_3_description', data.expense_3_description); setVal('expense_3_cost', data.expense_3_cost);
-  }
   (data.promotion_channels || []).forEach(ch => {
     const cb = document.querySelector(`#promoChannels input[value="${ch}"]`);
     if (cb) cb.checked = true;
@@ -126,8 +120,14 @@ function gatherForm(profile) {
   let activity = document.getElementById('activity_type').value;
   if (activity === 'Other') activity = document.getElementById('activity_type_other').value.trim() || 'Other';
 
-  const hasExp = document.getElementById('has_expenses').value === 'true';
-  const channels = [...document.querySelectorAll('#promoChannels input:checked')].map(c => c.value);
+  // Promotion channels; if "Other" is ticked, replace it with the typed value.
+  let channels = [...document.querySelectorAll('#promoChannels input:checked')].map(c => c.value);
+  if (channels.includes('Other')) {
+    const otherText = document.getElementById('promotion_other').value.trim();
+    channels = channels.filter(c => c !== 'Other');
+    if (otherText) channels.push(otherText);
+    else channels.push('Other');
+  }
 
   const num = (id) => { const v = document.getElementById(id).value; return v === '' ? null : Number(v); };
   const txt = (id) => { const v = document.getElementById(id).value.trim(); return v === '' ? null : v; };
@@ -146,13 +146,6 @@ function gatherForm(profile) {
     expected_attendance: num('expected_attendance'),
     volunteer_count: num('volunteer_count'),
     fundraising_target: num('fundraising_target'),
-    has_expenses: hasExp,
-    expense_1_description: hasExp ? txt('expense_1_description') : null,
-    expense_1_cost: hasExp ? num('expense_1_cost') : null,
-    expense_2_description: hasExp ? txt('expense_2_description') : null,
-    expense_2_cost: hasExp ? num('expense_2_cost') : null,
-    expense_3_description: hasExp ? txt('expense_3_description') : null,
-    expense_3_cost: hasExp ? num('expense_3_cost') : null,
     promotion_channels: channels.length ? channels : null,
     support_requests: txt('support_requests'),
     comments: txt('comments'),

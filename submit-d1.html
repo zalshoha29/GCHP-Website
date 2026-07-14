@@ -132,16 +132,7 @@
 
         <!-- Section D -->
         <div class="form-section-block">
-          <h3>Section D — Budget &amp; Promotion</h3>
-          <div class="pf-group">
-            <label>Do you expect any expenses?</label>
-            <select id="has_expenses"><option value="false">No</option><option value="true">Yes</option></select>
-          </div>
-          <div id="expenseRows" style="display:none;">
-            <div class="pf-row"><div class="pf-group"><label>Expense 1 — Description</label><input type="text" id="expense_1_description" /></div><div class="pf-group"><label>Cost ($)</label><input type="number" id="expense_1_cost" min="0" step="0.01" /></div></div>
-            <div class="pf-row"><div class="pf-group"><label>Expense 2 — Description</label><input type="text" id="expense_2_description" /></div><div class="pf-group"><label>Cost ($)</label><input type="number" id="expense_2_cost" min="0" step="0.01" /></div></div>
-            <div class="pf-row"><div class="pf-group"><label>Expense 3 — Description</label><input type="text" id="expense_3_description" /></div><div class="pf-group"><label>Cost ($)</label><input type="number" id="expense_3_cost" min="0" step="0.01" /></div></div>
-          </div>
+          <h3>Section D — Promotion</h3>
           <div class="pf-group">
             <label>Promotion Channels</label>
             <div class="pf-checks" id="promoChannels">
@@ -152,6 +143,11 @@
               <label class="pf-check"><input type="checkbox" value="Email"> Email / Newsletter</label>
               <label class="pf-check"><input type="checkbox" value="In-Person"> In-Person</label>
               <label class="pf-check"><input type="checkbox" value="University Channels"> University Channels</label>
+              <label class="pf-check"><input type="checkbox" value="Other" id="promoOther"> Other</label>
+            </div>
+            <div class="pf-group" id="promoOtherWrap" style="display:none;margin-top:10px;">
+              <label>Please specify other channel(s)</label>
+              <input type="text" id="promotion_other" placeholder="e.g. Student radio, campus newspaper" />
             </div>
           </div>
         </div>

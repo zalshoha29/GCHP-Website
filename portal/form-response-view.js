@@ -48,17 +48,7 @@ function buildD1Sections(event) {
     { title: 'Section C — Fundraising Target', fields: [
       { question: 'Fundraising Target ($)', answer: event.fundraising_target },
     ]},
-    { title: 'Section D — Budget & Promotion', fields: [
-      { question: 'Are you expecting any expenses?', answer: event.has_expenses ? 'Yes' : 'No' },
-      ...(event.has_expenses ? [
-        { question: 'Expense 1 — Description', answer: event.expense_1_description },
-        { question: 'Expense 1 — Cost ($)', answer: event.expense_1_cost },
-        { question: 'Expense 2 — Description', answer: event.expense_2_description },
-        { question: 'Expense 2 — Cost ($)', answer: event.expense_2_cost },
-        { question: 'Expense 3 — Description', answer: event.expense_3_description },
-        { question: 'Expense 3 — Cost ($)', answer: event.expense_3_cost },
-        { question: 'Total Expected Expenses ($)', answer: event.total_expenses },
-      ] : []),
+    { title: 'Section D — Promotion', fields: [
       { question: 'Promotion Channels', answer: Array.isArray(event.promotion_channels) ? event.promotion_channels.join(', ') : event.promotion_channels },
     ]},
     { title: 'Section E — Confirmation & Support', fields: [
