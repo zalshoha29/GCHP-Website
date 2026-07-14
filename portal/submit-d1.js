@@ -20,8 +20,6 @@ function showError(msg) {
 
 // Mobile sidebar
 (function () {
-  const t = document.getElementById('sidebarToggle'), s = document.getElementById('sidebar');
-  if (t && s) t.addEventListener('click', () => s.classList.toggle('open'));
 })();
 
 // Conditional UI: Activity "Other"
@@ -60,7 +58,7 @@ document.addEventListener('gchp:ready', async (e) => {
 async function loadUnreadBadge(userId) {
   const count = await getUnreadCount(userId);
   const badge = document.getElementById('msgBadge');
-  if (count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
+  if (badge && count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
 }
 
 async function enterResubmitMode(profile) {

@@ -6,7 +6,6 @@ function toast(msg, type='') {
   t.textContent = msg; t.className = 'portal-toast show ' + type;
   setTimeout(() => { t.className = 'portal-toast ' + type; }, 2600);
 }
-(function(){ const t=document.getElementById('sidebarToggle'),s=document.getElementById('sidebar'); if(t&&s)t.addEventListener('click',()=>s.classList.toggle('open')); })();
 
 document.addEventListener('gchp:ready', async (e) => {
   await loadUnreadBadge(e.detail.profile.id);
@@ -16,7 +15,7 @@ document.addEventListener('gchp:ready', async (e) => {
 async function loadUnreadBadge(userId){
   const c = await getUnreadCount(userId);
   const b = document.getElementById('msgBadge');
-  if (c>0){ b.textContent=c; b.style.display='inline-block'; }
+  if (b && c>0){ b.textContent=c; b.style.display='inline-block'; }
 }
 
 function fmtDate(d){ return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }

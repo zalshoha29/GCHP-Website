@@ -3,7 +3,6 @@
    Calls the add-ambassador Edge Function (service-role
    admin work happens server-side, never in the browser).
    ========================================= */
-(function(){ const t=document.getElementById('sidebarToggle'),s=document.getElementById('sidebar'); if(t&&s)t.addEventListener('click',()=>s.classList.toggle('open')); })();
 (function(){ const el=document.getElementById('topbarDate'); if(el)el.textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); })();
 function toast(msg,type=''){ const t=document.getElementById('toast'); t.textContent=msg; t.className='portal-toast show '+type; setTimeout(()=>{t.className='portal-toast '+type;},3200); }
 function showError(msg){ const b=document.getElementById('formError'); document.getElementById('formErrorMsg').textContent=msg; b.style.display='flex'; }

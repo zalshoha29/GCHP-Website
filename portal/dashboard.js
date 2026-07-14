@@ -39,13 +39,6 @@ function toast(msg, type = '') {
   if (el) el.textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 })();
 
-// Mobile sidebar toggle
-(function () {
-  const toggle = document.getElementById('sidebarToggle');
-  const sidebar = document.getElementById('sidebar');
-  if (toggle && sidebar) toggle.addEventListener('click', () => sidebar.classList.toggle('open'));
-})();
-
 document.addEventListener('gchp:ready', async (e) => {
   const profile = e.detail.profile;
   await loadUnreadBadge(profile.id);
@@ -55,7 +48,7 @@ document.addEventListener('gchp:ready', async (e) => {
 async function loadUnreadBadge(userId) {
   const count = await getUnreadCount(userId);
   const badge = document.getElementById('msgBadge');
-  if (count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
+  if (badge && count > 0) { badge.textContent = count; badge.style.display = 'inline-block'; }
 }
 
 async function loadDashboard(profile) {

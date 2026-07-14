@@ -2,7 +2,6 @@
    GCHP Portal — Ambassador Fundraising Materials
    Shows the active cycle's materials; download via signed URL.
    ========================================= */
-(function(){ const t=document.getElementById('sidebarToggle'),s=document.getElementById('sidebar'); if(t&&s)t.addEventListener('click',()=>s.classList.toggle('open')); })();
 function toast(msg,type=''){ const t=document.getElementById('toast'); t.textContent=msg; t.className='portal-toast show '+type; setTimeout(()=>{t.className='portal-toast '+type;},2600); }
 function fmtDate(d){ return new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }
 
@@ -10,7 +9,7 @@ document.addEventListener('gchp:ready', async (e) => {
   await loadUnreadBadge(e.detail.profile.id);
   await loadMaterials();
 });
-async function loadUnreadBadge(userId){ const c=await getUnreadCount(userId); const b=document.getElementById('msgBadge'); if(c>0){b.textContent=c;b.style.display='inline-block';} }
+async function loadUnreadBadge(userId){ const c=await getUnreadCount(userId); const b=document.getElementById('msgBadge'); if(b&&c>0){b.textContent=c;b.style.display='inline-block';} }
 
 async function loadMaterials() {
   const container = document.getElementById('materialsContainer');

@@ -2,7 +2,6 @@
    GCHP Portal — Executive Send Message
    Two modes: individual search (default) or group filters (toggle).
    ========================================= */
-(function(){ const t=document.getElementById('sidebarToggle'),s=document.getElementById('sidebar'); if(t&&s)t.addEventListener('click',()=>s.classList.toggle('open')); })();
 (function(){ const el=document.getElementById('topbarDate'); if(el)el.textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); })();
 function toast(msg,type=''){ const t=document.getElementById('toast'); t.textContent=msg; t.className='portal-toast show '+type; setTimeout(()=>{t.className='portal-toast '+type;},2800); }
 function showError(msg){ const b=document.getElementById('formError'); document.getElementById('formErrorMsg').textContent=msg; b.style.display='flex'; }
@@ -91,17 +90,14 @@ async function resolveFilterRecipients() {
     return allAmbassadors.map(p => p.id).filter(id => !priorAmb.has(id));
   }
   if (filter === 'overdue_d2') {
-    const overdueDays = activeCycle?.d2_overdue_days || 14;
-    const { data: evs } = await sb.from('events').select('ambassador_id, event_date, status, post_reports(id)')
-      .eq('status','Event Complete — Awaiting Report');
-    const today = new Date(); today.setHours(0,0,0,0);
-    const ids = new Set();
-    (evs||[]).forEach(e => {
-      if (e.post_reports && e.post_reports.length) return;
-      const dl = new Date(e.event_date+'T00:00:00'); dl.setDate(dl.getDate()+overdueDays);
-      if (dl < today) ids.add(e.ambassador_id);
-    });
-    return [...ids];
+    // Overdue state comes from the database (event_status_view), computed on the same
+    // clock as the nightly escalator. Previously this was recomputed here in JS, which
+    // meant the recipient list could disagree with the system's own view of "overdue".
+    const { data: evs } = await sb
+      .from('event_status_view')
+      .select('ambassador_id, is_d2_overdue')
+      .eq('is_d2_overdue', true);
+    return [...new Set((evs || []).map(e => e.ambassador_id))];
   }
   return [];
 }

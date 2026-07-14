@@ -2,7 +2,6 @@
    GCHP Portal — Executive Cycle Management
    Create / edit / activate cycles. Scenario set per cycle.
    ========================================= */
-(function(){ const t=document.getElementById('sidebarToggle'),s=document.getElementById('sidebar'); if(t&&s)t.addEventListener('click',()=>s.classList.toggle('open')); })();
 (function(){ const el=document.getElementById('topbarDate'); if(el)el.textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); })();
 function toast(msg,type=''){ const t=document.getElementById('toast'); t.textContent=msg; t.className='portal-toast show '+type; setTimeout(()=>{t.className='portal-toast '+type;},2800); }
 function showError(msg){ const b=document.getElementById('cycleError'); document.getElementById('cycleErrorMsg').textContent=msg; b.style.display='flex'; }

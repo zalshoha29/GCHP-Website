@@ -2,7 +2,6 @@
    GCHP Portal — Executive Engagement Health
    Overall (all cycles) + per-cycle (selectable).
    ========================================= */
-(function(){ const t=document.getElementById('sidebarToggle'),s=document.getElementById('sidebar'); if(t&&s)t.addEventListener('click',()=>s.classList.toggle('open')); })();
 (function(){ const el=document.getElementById('topbarDate'); if(el)el.textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); })();
 
 const COMPLETED = ['Completed — Awaiting Impact Report','Complete — Impact Report Delivered'];
@@ -11,9 +10,10 @@ const APPROVED_PLUS = ['Approved — Awaiting Link','Approved — Link Sent','Ev
 let ambassadors = [], allEvents = [], cycles = [], activeCycle = null;
 
 document.addEventListener('gchp:ready', async () => {
-  const { data: ambs } = await sb.from('profiles').select('id, display_name, university, status, inactive_since, inactive_until').eq('role','ambassador');
+  const { data: ambs } = await sb.from('profiles').select('id, display_name, university').eq('role','ambassador');
   ambassadors = ambs || [];
-  const { data: evs } = await sb.from('events').select('*, post_reports(total_raised, date_submitted)');
+  // Read from event_status_view: overdue state is computed by the DB, not here.
+  const { data: evs } = await sb.from('event_status_view').select('*, post_reports(total_raised, date_submitted)');
   allEvents = evs || [];
   const { data: cyc } = await sb.from('cycles').select('*').order('start_date', { ascending: false });
   cycles = cyc || [];
@@ -47,18 +47,12 @@ function metricCards(m, extra='') {
     ${extra}`;
 }
 
-function isActive(a){ return a.status !== 'inactive'; }
-function activeAmbassadors(){ return ambassadors.filter(isActive); }
-
 function renderOverall() {
   const m = metricsFor(allEvents);
   const activeAmbIds = new Set(allEvents.map(e => e.ambassador_id));
-  const activeCount = activeAmbassadors().length;
-  const inactiveCount = ambassadors.length - activeCount;
   document.getElementById('overallGrid').innerHTML = metricCards(m, `
-    <div class="metric-card"><div class="mc-num">${activeCount}</div><div class="mc-label">Active ambassadors</div></div>
-    <div class="metric-card"><div class="mc-num">${activeAmbIds.size}</div><div class="mc-label">Ever participated</div></div>
-    ${inactiveCount ? `<div class="metric-card"><div class="mc-num">${inactiveCount}</div><div class="mc-label">Inactive (opted out)</div></div>` : ''}`);
+    <div class="metric-card"><div class="mc-num">${ambassadors.length}</div><div class="mc-label">Total ambassadors</div></div>
+    <div class="metric-card"><div class="mc-num">${activeAmbIds.size}</div><div class="mc-label">Ever participated</div></div>`);
 }
 
 function renderCycle(cycleId) {
@@ -68,15 +62,11 @@ function renderCycle(cycleId) {
 
   // No-D1 + overdue for this cycle
   const evByAmb = {}; cycleEvents.forEach(e => (evByAmb[e.ambassador_id] ||= []).push(e));
-  const noD1 = activeAmbassadors().filter(a => !evByAmb[a.id]).length;
-  const overdueDays = cyc?.d2_overdue_days || 14;
-  const today = new Date(); today.setHours(0,0,0,0);
-  const overdueD2 = cycleEvents.filter(e => {
-    if (e.status !== 'Event Complete — Awaiting Report') return false;
-    if (e.post_reports && e.post_reports.length) return false;
-    const dl = new Date(e.event_date+'T00:00:00'); dl.setDate(dl.getDate()+overdueDays);
-    return dl < today;
-  }).length;
+  const noD1 = ambassadors.filter(a => !evByAmb[a.id]).length;
+  // is_d2_overdue is computed by the database (event_status_view) on the same clock
+  // the nightly escalator uses, so this count can never disagree with what the
+  // system actually acted on.
+  const overdueD2 = cycleEvents.filter(e => e.is_d2_overdue).length;
 
   document.getElementById('cycleGrid').innerHTML = metricCards(m, `
     <div class="metric-card amber"><div class="mc-num">${noD1}</div><div class="mc-label">No D1 (this cycle)</div></div>
@@ -101,12 +91,9 @@ function renderCycle(cycleId) {
 
   document.getElementById('ambTable').innerHTML = `<div class="exec-table-wrap"><table class="exec-table">
     <thead><tr><th>Ambassador</th><th>University</th><th>Type</th><th>Sub</th><th>App</th><th>Comp</th><th>D2 %</th><th>Raised</th><th>Lag</th></tr></thead>
-    <tbody>${rows.map(r=>{
-      const inactive = r.a.status === 'inactive';
-      return `<tr${inactive?' style="opacity:0.55;"':''}>
-      <td>${esc(r.a.display_name)} ${inactive?'<span class="flag-badge" style="background:#fee2e2;color:#b91c1c;">Inactive</span>':''}</td><td>${esc(r.a.university||'—')}</td>
+    <tbody>${rows.map(r=>`<tr>
+      <td>${esc(r.a.display_name)}</td><td>${esc(r.a.university||'—')}</td>
       <td>${r.returning?'<span class="flag-badge flag-resub">Returning</span>':'<span class="flag-badge" style="background:#dcfce7;color:#15803d;">First-time</span>'}</td>
       <td>${r.sub}</td><td>${r.app}</td><td>${r.comp}</td><td>${r.rate}%</td>
-      <td>$${r.raised.toLocaleString()}</td><td>${r.lag===null?'—':r.lag+'d'}</td></tr>`;
-    }).join('')}</tbody></table></div>`;
+      <td>$${r.raised.toLocaleString()}</td><td>${r.lag===null?'—':r.lag+'d'}</td></tr>`).join('')}</tbody></table></div>`;
 }

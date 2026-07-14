@@ -1,7 +1,6 @@
 /* =========================================
    GCHP Portal — Ambassador Messages (inbox)
    ========================================= */
-(function(){ const t=document.getElementById('sidebarToggle'),s=document.getElementById('sidebar'); if(t&&s)t.addEventListener('click',()=>s.classList.toggle('open')); })();
 
 let myId = null;
 
@@ -16,6 +15,7 @@ const TYPE_LABEL = { manual:'From GCHP team', automated:'Automated notification'
 async function refreshBadge(){
   const c = await getUnreadCount(myId);
   const b = document.getElementById('msgBadge');
+  if (!b) return;
   if (c>0){ b.textContent=c; b.style.display='inline-block'; } else { b.style.display='none'; }
 }
 

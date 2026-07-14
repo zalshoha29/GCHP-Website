@@ -2,7 +2,6 @@
    GCHP Portal — Executive Calendar & Deadlines
    ========================================= */
 let activeCycle = null;
-(function(){ const t=document.getElementById('sidebarToggle'),s=document.getElementById('sidebar'); if(t&&s)t.addEventListener('click',()=>s.classList.toggle('open')); })();
 (function(){ const el=document.getElementById('topbarDate'); if(el)el.textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); })();
 function fmtDate(d){ return d ? new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—'; }
 
@@ -131,10 +130,12 @@ async function loadUpcoming() {
 }
 
 async function loadDeadlines() {
-  const overdueDays = activeCycle?.d2_overdue_days || 14;
+  // Deadline and days-left are computed by the database (event_status_view), on the
+  // same clock the nightly escalator uses. Do NOT recompute them here — the browser's
+  // local date can differ from the system's, and the UI would disagree with reality.
   const { data, error } = await sb
-    .from('events')
-    .select('*, profiles(display_name, university, ambassador_id), post_reports(id)')
+    .from('event_status_view')
+    .select('*, profiles(display_name, university, ambassador_id)')
     .eq('status', 'Event Complete — Awaiting Report')
     .order('event_date', { ascending: true });
 
@@ -142,17 +143,15 @@ async function loadDeadlines() {
   if (error) { c.innerHTML = `<div class="empty-state">${esc(error.message)}</div>`; return; }
   if (!data || !data.length) { c.innerHTML = `<div class="empty-state">No events currently awaiting a report.</div>`; return; }
 
-  const today = new Date(); today.setHours(0,0,0,0);
   c.innerHTML = `<div class="exec-table-wrap"><table class="exec-table">
     <thead><tr><th>Event</th><th>Ambassador</th><th>Event Date</th><th>D2 Deadline</th><th>Status</th></tr></thead>
     <tbody>${data.map(r => {
-      const dl = new Date(r.event_date + 'T00:00:00'); dl.setDate(dl.getDate() + overdueDays);
-      const daysLeft = Math.ceil((dl - today) / 86400000);
+      const daysLeft = r.d2_days_left;
       const cls = daysLeft < 0 ? 'row-overdue' : (daysLeft <= 3 ? 'row-soon' : '');
       const label = daysLeft < 0 ? `${Math.abs(daysLeft)}d overdue` : `${daysLeft}d left`;
       return `<tr class="${cls}"><td>${esc(r.event_name)} <span style="color:var(--gray);font-size:12px;">(${esc(r.event_id)})</span></td>
         <td>${esc(r.profiles?.display_name||'—')}</td><td>${fmtDate(r.event_date)}</td>
-        <td>${fmtDate(dl.toISOString().split('T')[0])} <strong>(${label})</strong></td><td>${esc(r.status)}</td></tr>`;
+        <td>${fmtDate(r.d2_deadline)} <strong>(${label})</strong></td><td>${esc(r.status)}</td></tr>`;
     }).join('')}</tbody></table></div>`;
 }
 
